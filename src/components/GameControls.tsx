@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import './GameControls.css';
 
 interface GameControlsProps {
@@ -8,17 +8,19 @@ interface GameControlsProps {
   isGameOver: boolean;
 }
 
-const GameControls: React.FC<GameControlsProps> = ({
+const GameControls = ({
   onRestart,
   onPause,
   isPaused,
   isGameOver
-}) => {
+}: GameControlsProps) => {
   return (
     <div className="game-controls">
       <button
         className="control-button restart-button"
         onClick={onRestart}
+        type="button"
+        aria-label={isGameOver ? 'リスタート' : '新規ゲーム'}
       >
         {isGameOver ? 'リスタート' : '新規ゲーム'}
       </button>
@@ -27,6 +29,8 @@ const GameControls: React.FC<GameControlsProps> = ({
         <button
           className="control-button pause-button"
           onClick={onPause}
+          type="button"
+          aria-label={isPaused ? 'ゲーム再開' : 'ポーズ'}
         >
           {isPaused ? 'ゲーム再開' : 'ポーズ'}
         </button>
@@ -35,4 +39,4 @@ const GameControls: React.FC<GameControlsProps> = ({
   );
 };
 
-export default GameControls;
+export default memo(GameControls);

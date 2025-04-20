@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { GameEngine } from '../game/GameEngine';
 import { GameState } from '../game/types';
 import GameRenderer from './GameRenderer';
 import GameControls from './GameControls';
 import './Game.css';
 
-const Game: React.FC = () => {
+const Game = () => {
   // ゲームエンジンの参照
-  const [gameEngine] = useState<GameEngine>(new GameEngine());
+  const gameEngineRef = useRef<GameEngine>(new GameEngine());
   // ゲーム状態
   const [gameState, setGameState] = useState<GameState | null>(null);
+  // キャンバス要素の参照
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   
   // ゲーム状態更新コールバック
   const handleGameStateUpdate = useCallback((newState: GameState) => {
@@ -18,39 +20,45 @@ const Game: React.FC = () => {
   
   // ゲーム初期化
   useEffect(() => {
-    // キャンバス要素の取得（初回レンダリング後）
-    const canvasElement = document.getElementById('gameCanvas') as HTMLCanvasElement;
-    if (!canvasElement) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
     
     // ゲームエンジンの初期化
-    gameEngine.init(canvasElement, handleGameStateUpdate);
+    gameEngineRef.current.init(canvas, handleGameStateUpdate);
     
     // クリーンアップ
     return () => {
-      gameEngine.endGame();
+      gameEngineRef.current.endGame();
     };
-  }, [gameEngine, handleGameStateUpdate]);
+  }, [handleGameStateUpdate]);
   
   // ゲームリスタート
-  const handleRestart = () => {
-    gameEngine.resetGame();
-  };
+  const handleRestart = useCallback(() => {
+    gameEngineRef.current.resetGame();
+  }, []);
   
   // ポーズ処理
-  const handlePause = () => {
+  const handlePause = useCallback(() => {
     if (gameState?.isPaused) {
-      gameEngine.resumeGame();
+      gameEngineRef.current.resumeGame();
     } else {
-      gameEngine.pauseGame();
+      gameEngineRef.current.pauseGame();
     }
-  };
+  }, [gameState?.isPaused]);
   
   return (
     <div className="game-container">
       <h1 className="game-title">宇宙戦闘機ゲーム</h1>
       
       <div className="canvas-wrapper">
-        {gameState && <GameRenderer gameState={gameState} />}
+        <canvas
+          ref={canvasRef}
+          id="gameCanvas"
+          width={800}
+          height={600}
+          className="game-canvas"
+        />
+        {gameState && <GameRenderer gameState={gameState} canvasRef={canvasRef} />}
       </div>
       
       <div className="game-info">
