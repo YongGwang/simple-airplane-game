@@ -1,0 +1,21 @@
+{
+  "name": "simple-airplane-game",
+  "version": "1.0.0",
+  "description": "シンプルな宇宙戦闘機シューティングゲーム",
+  "main": "game.js",
+  "scripts": {
+    "start": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "game",
+    "javascript",
+    "html5",
+    "canvas"
+  ],
+  "author": "YongGwang",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
