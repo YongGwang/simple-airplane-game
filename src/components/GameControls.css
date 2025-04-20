@@ -1,0 +1,49 @@
+.game-controls {
+  display: flex;
+  gap: 15px;
+}
+
+.control-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.restart-button {
+  background: linear-gradient(to bottom, #4CAF50, #3e8e41);
+  color: white;
+}
+
+.restart-button:hover {
+  background: linear-gradient(to bottom, #3e8e41, #2e6a31);
+  transform: translateY(1px);
+}
+
+.pause-button {
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  color: white;
+}
+
+.pause-button:hover {
+  background: linear-gradient(to bottom, #2980b9, #1c6392);
+  transform: translateY(1px);
+}
+
+.control-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .control-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,137 @@
+.game-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 100, 255, 0.5);
+  color: #fff;
+}
+
+.game-title {
+  text-align: center;
+  color: #00aaff;
+  text-shadow: 0 0 10px #0077ff;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.canvas-wrapper {
+  margin-bottom: 20px;
+  border: 3px solid #333;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  background-color: #000;
+}
+
+.canvas-wrapper canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.score-display {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffdd00;
+  text-shadow: 0 0 5px #ff8800;
+}
+
+.game-instructions {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.game-instructions h3 {
+  color: #00aaff;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.game-instructions ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.game-instructions li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* 敵とパワーアップのカラーサンプル */
+.enemy-basic,
+.enemy-fast,
+.enemy-zigzag,
+.enemy-boss,
+.powerup-weapon,
+.powerup-life {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 3px;
+}
+
+.enemy-basic {
+  background-color: #FF5555;
+}
+
+.enemy-fast {
+  background-color: #FFaa00;
+}
+
+.enemy-zigzag {
+  background-color: #FF00FF;
+}
+
+.enemy-boss {
+  background-color: #FF0000;
+}
+
+.powerup-weapon {
+  background-color: #00FFFF;
+}
+
+.powerup-life {
+  background-color: #00FF00;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 10px;
+  }
+  
+  .game-title {
+    font-size: 24px;
+  }
+  
+  .score-display {
+    font-size: 20px;
+  }
+  
+  .game-instructions ul {
+    flex-direction: column;
+  }
+}
