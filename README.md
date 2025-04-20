@@ -26,8 +26,8 @@
 2. `npm install`で依存関係をインストール
 3. 以下のいずれかの方法でサーバーを起動：
    - `npm start` - Expressサーバーを使用（ポート3000）
-   - `npm run dev` - live-serverを使用（自動リロード機能付き）
-4. ブラウザで`http://localhost:3000`にアクセス
+   - `npm run dev` - http-serverを使用（自動リロード機能付き）
+4. ブラウザで`http://localhost:3000`（`npm start`の場合）または`http://localhost:8080`（`npm run dev`の場合）にアクセス
 5. 矢印キーとスペースキーでプレイ
 
 ## ファイル構成
