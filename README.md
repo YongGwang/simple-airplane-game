@@ -14,15 +14,29 @@
 
 ## 使い方
 
+### 通常のブラウザでプレイ
+
 1. リポジトリをクローンまたはダウンロード
 2. `index.html`をブラウザで開く
 3. 矢印キーとスペースキーでプレイ
+
+### Node.jsでプレイ（推奨）
+
+1. リポジトリをクローンまたはダウンロード
+2. `npm install`で依存関係をインストール
+3. 以下のいずれかの方法でサーバーを起動：
+   - `npm start` - Expressサーバーを使用（ポート3000）
+   - `npm run dev` - live-serverを使用（自動リロード機能付き）
+4. ブラウザで`http://localhost:3000`にアクセス
+5. 矢印キーとスペースキーでプレイ
 
 ## ファイル構成
 
 - `index.html` - ゲームのHTMLファイル
 - `style.css` - スタイルシート
 - `game.js` - ゲームロジック
+- `server.js` - Expressサーバー（Node.js用）
+- `package.json` - Node.jsプロジェクト設定
 
 ## 敵タイプ
 
@@ -53,6 +67,12 @@
 - JavaScript - ゲームロジック
 - CSS3 - スタイリング
 - requestAnimationFrame - スムーズなアニメーション
+- Node.js & Express - サーバーサイド（オプション）
+
+## 開発環境の要件
+
+- Node.js 18.0.0以上
+- npm または yarn
 
 ## ライセンス
 
