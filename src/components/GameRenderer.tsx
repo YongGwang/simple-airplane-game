@@ -1,13 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import { useEffect, RefObject, memo } from 'react';
 import { GameState, Enemy, PowerUp, Star, Player, Missile } from '../game/types';
 
 interface GameRendererProps {
   gameState: GameState;
+  canvasRef: RefObject<HTMLCanvasElement>;
 }
 
-const GameRenderer: React.FC<GameRendererProps> = ({ gameState }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+const GameRenderer = ({ gameState, canvasRef }: GameRendererProps) => {
   // キャンバスへの描画処理
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -43,7 +42,11 @@ const GameRenderer: React.FC<GameRendererProps> = ({ gameState }) => {
     // パワーアップアイテムの描画
     drawPowerUps(ctx, gameState.powerUps);
     
-  }, [gameState]);
+    // ゲームオーバーの場合
+    if (gameState.gameOver) {
+      drawGameOver(ctx, gameState.player.score);
+    }
+  }, [gameState, canvasRef]);
   
   // 星空の描画
   const drawStarfield = (ctx: CanvasRenderingContext2D, stars: Star[]) => {
@@ -246,16 +249,13 @@ const GameRenderer: React.FC<GameRendererProps> = ({ gameState }) => {
     
     ctx.font = '18px Arial';
     ctx.fillText('もう一度プレイするには「リスタート」ボタンを押してください', ctx.canvas.width / 2, ctx.canvas.height / 2 + 50);
+    
+    // テキスト位置をリセット
+    ctx.textAlign = 'start';
   };
   
-  return (
-    <canvas
-      ref={canvasRef}
-      width={800}
-      height={600}
-      style={{ display: 'block', margin: '0 auto' }}
-    />
-  );
+  // キャンバスは直接渡されるようになったため、何も返さない
+  return null;
 };
 
-export default GameRenderer;
+export default memo(GameRenderer);
